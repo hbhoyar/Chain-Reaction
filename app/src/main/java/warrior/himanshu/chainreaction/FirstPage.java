@@ -14,10 +14,11 @@ public class FirstPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_page);
-        String[] list_items={"Select Grid Size","9 * 6"};
-        Spinner drop_down = findViewById(R.id.dropdown);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),R.layout.support_simple_spinner_dropdown_item,list_items);
-        drop_down.setAdapter(adapter);
+        Spinner spinner = findViewById(R.id.dropdown);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.size_options, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
 
         Button start = findViewById(R.id.start);
 
