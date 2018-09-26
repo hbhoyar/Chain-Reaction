@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Handler;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,9 +21,11 @@ public class GamePage extends AppCompatActivity {
     private Canvas mCanvas;
     private Bitmap mBitmap;
     private Paint linePaint = new Paint(), bgPaint = new Paint();
-    private int getX, getY, vWidth, vHeight, lastX, lastY, offset;
+    private int getX, getY, vWidth, vHeight, lastX, lastY, offset, idxX, idxY;
     private int nColumns, nRows;
+    private float leftShift, downShift;
     private boolean k;
+    private Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,26 +38,28 @@ public class GamePage extends AppCompatActivity {
         k = true;
         nColumns = 6;
         nRows = 8;
-        offset = 20;
+        offset = 60;
         linePaint.setColor(ResourcesCompat.getColor(getResources(),R.color.line,null));
         bgPaint.setColor(ResourcesCompat.getColor(getResources(),R.color.bgcolor,null));
         mCoordinates = findViewById(R.id.coordinates);
-        mImageView.setOnClickListener(new View.OnClickListener() {
+        handler = new Handler();
+        handler.postDelayed(new Runnable() {
             @Override
-            public void onClick(View v) {
-                if (k){
-                    init(v);
-                    k = false;
-                    Toast.makeText(getApplicationContext(),"Hey",Toast.LENGTH_SHORT).show();
-                }
+            public void run() {
+                init(mImageView);
             }
-        });
+        },1);
+
         mImageView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 lastX = (int)event.getX()-getX;
                 lastY = (int)event.getY()-getY;
-                mCoordinates.setText(lastX+","+lastY);
+                idxX = (int)Math.floor((lastX-offset)/leftShift);
+                idxY = (int)Math.floor((lastY-offset)/downShift);
+                if(idxX >= 0 && idxX < nColumns && idxY >= 0 && idxY < nRows) {
+                    mCoordinates.setText(idxX+ "," +idxY);
+                }
                 return false;
             }
         });
@@ -63,10 +68,10 @@ public class GamePage extends AppCompatActivity {
     private void init(View v){
         vWidth = v.getWidth();
         vHeight = v.getHeight();
-        float leftShift = vWidth-2*offset;
-        float DownShift = vHeight-2*offset;
+        leftShift = vWidth-2*offset;
+        downShift = vHeight-2*offset;
         leftShift = leftShift/nColumns;
-        DownShift = DownShift/nRows;
+        downShift = downShift/nRows;
         mBitmap = Bitmap.createBitmap(vWidth,vHeight,Bitmap.Config.ARGB_4444);
         mImageView.setImageBitmap(mBitmap);
         mCanvas = new Canvas(mBitmap);
@@ -75,7 +80,7 @@ public class GamePage extends AppCompatActivity {
             mCanvas.drawLine(offset+i*leftShift,offset,offset+i*leftShift,vHeight-offset,linePaint);
         }
         for(int i=0; i<=nRows; i++){
-            mCanvas.drawLine(offset,offset+i*DownShift,vWidth-offset,offset+i*DownShift,linePaint);
+            mCanvas.drawLine(offset,offset+i*downShift,vWidth-offset,offset+i*downShift,linePaint);
         }
     }
 
