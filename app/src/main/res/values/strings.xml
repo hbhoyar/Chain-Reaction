@@ -6,4 +6,8 @@
         <item>Select Size</item>
         <item>9x6</item>
     </string-array>
+    <string name="keep_tapping">Keep tapping.</string>
+    <string name="done">Done!</string>
+    <string name="exit">Exit</string>
+    <string name="title_activity_game_page">GamePage</string>
 </resources>

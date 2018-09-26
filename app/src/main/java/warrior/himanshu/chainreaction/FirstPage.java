@@ -25,6 +25,7 @@ public class FirstPage extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //TODO: Stop multiple activity spawn when clicked multiple times fastly
                 Intent game = new Intent(getApplicationContext(),GamePage.class);
                 startActivity(game);
             }
