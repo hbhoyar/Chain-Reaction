@@ -20,7 +20,7 @@ public class GamePage extends AppCompatActivity {
     private Canvas mCanvas;
     private Bitmap mBitmap;
     private Paint linePaint = new Paint(), bgPaint = new Paint();
-    private int getX, getY, vWidth, vHeight, lastX, lastY;
+    private int getX, getY, vWidth, vHeight, lastX, lastY, offset;
     private int nColumns, nRows;
     private boolean k;
 
@@ -35,6 +35,7 @@ public class GamePage extends AppCompatActivity {
         k = true;
         nColumns = 6;
         nRows = 8;
+        offset = 20;
         linePaint.setColor(ResourcesCompat.getColor(getResources(),R.color.line,null));
         bgPaint.setColor(ResourcesCompat.getColor(getResources(),R.color.bgcolor,null));
         mCoordinates = findViewById(R.id.coordinates);
@@ -60,12 +61,22 @@ public class GamePage extends AppCompatActivity {
     }
 
     private void init(View v){
-        int vWidth = v.getWidth();
-        int vHeight = v.getHeight();
+        vWidth = v.getWidth();
+        vHeight = v.getHeight();
+        float leftShift = vWidth-2*offset;
+        float DownShift = vHeight-2*offset;
+        leftShift = leftShift/nColumns;
+        DownShift = DownShift/nRows;
         mBitmap = Bitmap.createBitmap(vWidth,vHeight,Bitmap.Config.ARGB_4444);
         mImageView.setImageBitmap(mBitmap);
         mCanvas = new Canvas(mBitmap);
         mCanvas.drawColor(bgPaint.getColor());
-        for(int i=0; i<=)
+        for(int i=0; i<=nColumns; i++){
+            mCanvas.drawLine(offset+i*leftShift,offset,offset+i*leftShift,vHeight-offset,linePaint);
+        }
+        for(int i=0; i<=nRows; i++){
+            mCanvas.drawLine(offset,offset+i*DownShift,vWidth-offset,offset+i*DownShift,linePaint);
+        }
     }
+
 }
