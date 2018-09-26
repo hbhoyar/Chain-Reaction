@@ -21,6 +21,7 @@ public class GamePage extends AppCompatActivity {
     private Bitmap mBitmap;
     private Paint linePaint = new Paint(), bgPaint = new Paint();
     private int getX, getY, vWidth, vHeight, lastX, lastY;
+    private int nColumns, nRows;
     private boolean k;
 
     @Override
@@ -32,6 +33,8 @@ public class GamePage extends AppCompatActivity {
         getX = (int)mImageView.getX();
         getY = (int)mImageView.getY();
         k = true;
+        nColumns = 6;
+        nRows = 8;
         linePaint.setColor(ResourcesCompat.getColor(getResources(),R.color.line,null));
         bgPaint.setColor(ResourcesCompat.getColor(getResources(),R.color.bgcolor,null));
         mCoordinates = findViewById(R.id.coordinates);
@@ -63,6 +66,6 @@ public class GamePage extends AppCompatActivity {
         mImageView.setImageBitmap(mBitmap);
         mCanvas = new Canvas(mBitmap);
         mCanvas.drawColor(bgPaint.getColor());
-
+        for(int i=0; i<=)
     }
 }
