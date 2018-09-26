@@ -6,4 +6,5 @@
     <color name="colorRectangle">#455A64</color>
     <color name="bgcolor">#FFFFD600</color>
     <color name="line">#ff0000</color>
+    <color name="btncolor">#aafaaf</color>
 </resources>

@@ -4,38 +4,68 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bgcolor"
     tools:context=".GamePage">
 
-    <ImageView
+    <android.support.v7.widget.AppCompatImageView
         android:id="@+id/myImageView"
         android:layout_width="match_parent"
-        android:layout_height="434dp"
-        android:layout_margin="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="20dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/coordinates"
-        android:layout_width="121dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="104dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Coordinates"
+        android:layout_marginBottom="9dp"
+        android:background="@color/btncolor"
         android:gravity="center"
+        android:text="@string/coordinates"
         app:layout_constraintBottom_toTopOf="@+id/myImageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/undo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.545" />
+
+    <Button
+        android:id="@+id/undo"
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/btncolor"
+        android:text="@string/undo"
+        app:layout_constraintBottom_toTopOf="@+id/myImageView"
+        app:layout_constraintEnd_toStartOf="@+id/coordinates"
+        app:layout_constraintStart_toEndOf="@+id/exit"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/exit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/exit"
+        android:background="@color/btncolor"
+        app:layout_constraintBottom_toTopOf="@+id/myImageView"
+        app:layout_constraintEnd_toStartOf="@+id/undo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.402" />
+        app:layout_constraintHorizontal_bias="50"/>
 </android.support.constraint.ConstraintLayout>
